@@ -1,0 +1,35 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div>
+            <table>
+                <tr>
+                    <th>Date du tirage</th>
+                    <th>Boule 1</th>
+                    <th>Boule 2</th>
+                    <th>Boule 3</th>
+                    <th>Boule 4</th>
+                    <th>Boule 5</th>
+                </tr>
+            <?php foreach ($aResults as $aResult): ?>
+                <tr>
+                    <td><?php print $aResult['date_de_tirage'] ?></td>
+                    <td><?php print $aResult['boule_1'] ?></td>
+                    <td><?php print $aResult['boule_2'] ?></td>
+                    <td><?php print $aResult['boule_3'] ?></td>
+                    <td><?php print $aResult['boule_4'] ?></td>
+                    <td><?php print $aResult['boule_5'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+        </div>
+    </body>
+</html>
