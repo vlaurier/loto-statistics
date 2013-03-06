@@ -7,11 +7,17 @@
 class ResultsManager {
 
     /**
-     * Represents the game's datas
+     * Store games datas
      * 
      * @var array   
      */
     protected $_aDatas = array();
+    
+    /**
+     * List all available games
+     * 
+     * @var array 
+     */
     protected $_aGames = array('nouveau_loto', 'loto');
 
     /**
@@ -30,8 +36,10 @@ class ResultsManager {
     }
 
     /**
+     * Populate aDatas with asked games.
+     * By default, all games are retrieved.
      * 
-     * @param type $aGames
+     * @param[optional] NULL|array|string $aGames
      * @throws Exception
      */
     public function load($aGames = NULL) {
@@ -50,6 +58,11 @@ class ResultsManager {
         }
     }
 
+    /**
+     * 
+     * @param string $sFile 
+     * @return type
+     */
     public static function arrayFromSerializedFile($sFile){
         $aFile = file('results/php/' .$sFile. '.php');
         return unserialize(urldecode($aFile[0]));
@@ -66,7 +79,7 @@ class ResultsManager {
     public function __get($sGame) {
 
         if (!in_array($sGame, $this->_aGames)) {
-            throw new Exception('Cannot call this method');
+            throw new Exception('Cannot call this property');
         }
         if (!array_key_exists($sGame, $this->_aDatas)) {
             $this->load($sGame);
@@ -74,8 +87,14 @@ class ResultsManager {
         return $this->_aDatas[$sGame];
     }
 
+    /**
+     * Refresh results by downloading zip and extract csv
+     * 
+     * @return void
+     */
     static public function refresh() {
 
+        // TODO: replace hard coding to load games from config
         $sGame = 'nouveau_loto';
         $file = 'https://media.fdj.fr/generated/game/loto/' . $sGame . '.zip';
         $newfile = 'results/zip/' . $sGame . '.zip';

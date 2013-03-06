@@ -17,7 +17,7 @@ exit;
   $zip->close();
   } else {
   echo 'échec, code:' . $res;
-  } */
+  } 
 
 
 // Try to open the csv file
@@ -47,20 +47,5 @@ foreach ($aCsvLines as $result) {
     }
     $aResults[] = array_combine($aFields, explode(';', $stringValue));
 }
+*/
 
-echo "<pre>";
-var_dump($aResults);
-?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
